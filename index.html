@@ -127,9 +127,6 @@
         </div>
     </main>
 
-    <!-- Som de vitória -->
-    <audio id="victory-sound" src="Adventure/Victory Sound Effect.mp3" preload="auto"></audio>
-
     <script>
         const avanca = document.querySelectorAll('.btn-proximo');
         
@@ -137,7 +134,6 @@
             button.addEventListener('click', function() {
                 const atual = document.querySelector('.ativo');
                 const proximoPasso = 'passo-' + this.getAttribute('data-proximo');
-                const victorySound = document.getElementById('victory-sound');
                 
                 // Verifica se o próximo passo existe
                 const proximoElemento = document.getElementById(proximoPasso);
@@ -146,14 +142,8 @@
                     atual.classList.remove('ativo');
                     proximoElemento.classList.add('ativo');
 
-                    // Quando chegar no passo final (passo 11 ou 12), tocar o som e gerar moedas
-                    if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
-                        // Tocar o som de vitória
-                        victorySound.play();
-
-                        // Gerar moedas
-                        gerarMoedas();
-                    }
+                    // Gerar moedas
+                    gerarMoedas();
                 } else {
                     console.error('Erro: Não foi possível encontrar o próximo passo com o ID:', proximoPasso);
                 }
