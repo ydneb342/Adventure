@@ -48,7 +48,7 @@
         .moeda {
             position: absolute;
             top: -50px;
-            font-size: 30px;
+            font-size: 60px; /* Aumentamos o tamanho das moedas (dobrado) */
             color: gold;
             animation: cair 5s linear infinite;
         }
@@ -151,18 +151,18 @@
             });
         });
 
-        // Função para gerar moedas
+        // Função para gerar moedas continuamente
         function gerarMoedas() {
-            for (let i = 0; i < 10; i++) {
+            setInterval(() => {  // Gera moedas a cada intervalo
                 const moeda = document.createElement('div');
                 moeda.classList.add('moeda');
-                moeda.style.left = `${Math.random() * 100}%`;
+                moeda.style.left = `${Math.random() * 100}%`;  // Posiciona a moeda aleatoriamente
                 moeda.textContent = '💰';
                 document.body.appendChild(moeda);
                 setTimeout(() => {
                     moeda.remove();
-                }, 5000);  // Remove as moedas após 5 segundos
-            }
+                }, 5000);  // Remove a moeda após 5 segundos
+            }, 500);  // Intervalo de 500ms entre a criação das moedas
         }
     </script>
 </body>
