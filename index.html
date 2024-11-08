@@ -145,14 +145,17 @@
 
                 // Quando chegar no passo final (passo 11 ou 12), tocar o som e gerar moedas
                 if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
-                    victorySound.play();
-                    gerarMoedas();
+                    victorySound.play();  // Toca o som
+                    gerarMoedas();  // Gera as moedas
                 }
             });
         });
 
         // Função para gerar moedas continuamente
         function gerarMoedas() {
+            const victorySound = document.getElementById('victory-sound'); // Garante que o som seja tocado
+            victorySound.play();  // Toca o som imediatamente
+
             setInterval(() => {  // Gera moedas a cada intervalo
                 const moeda = document.createElement('div');
                 moeda.classList.add('moeda');
