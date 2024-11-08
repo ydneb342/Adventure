@@ -139,17 +139,21 @@
                 const proximoPasso = 'passo-' + this.getAttribute('data-proximo');
                 const victorySound = document.getElementById('victory-sound');
                 
-                // Esconde a tela anterior e mostra a próxima
-                atual.classList.remove('ativo');
-                document.getElementById(proximoPasso).classList.add('ativo');
+                // Verifica se o próximo passo existe
+                const proximoElemento = document.getElementById(proximoPasso);
+                if (proximoElemento) {
+                    // Esconde a tela anterior e mostra a próxima
+                    atual.classList.remove('ativo');
+                    proximoElemento.classList.add('ativo');
 
-                // Quando chegar no passo final (passo 11 ou 12), tocar o som e gerar moedas
-                if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
-                    // Tocar o som de vitória
-                    victorySound.play();
+                    // Quando chegar no passo final (passo 11 ou 12), tocar o som e gerar moedas
+                    if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
+                        // Tocar o som de vitória
+                        victorySound.play();
 
-                    // Gerar moedas
-                    gerarMoedas();
+                        // Gerar moedas
+                        gerarMoedas();
+                    }
                 }
             });
         });
