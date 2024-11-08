@@ -143,7 +143,7 @@
                     atual.classList.remove('ativo');
                     proximoElemento.classList.add('ativo');
 
-                    // Quando chegar nos passos finais (passo 11 ou 12), gerar as moedas
+                    // Quando chegar nos passos 11 ou 12, gerar as moedas
                     if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
                         gerarMoedas();
                     }
@@ -153,9 +153,8 @@
             });
         });
 
-        // Função para gerar moedas no final da jornada (passos 11 ou 12)
+        // Função para gerar moedas quando "Explorar a cidade perdida" for apertado
         function gerarMoedas() {
-            // Gera moedas a cada 500ms, mas apenas quando a jornada chega ao fim
             setInterval(() => { 
                 const moeda = document.createElement('div');
                 moeda.classList.add('moeda');
