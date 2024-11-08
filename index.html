@@ -75,6 +75,10 @@
             <button class="btn-proximo" data-proximo="2">Pernambuco</button>
         </div>
         <!-- Outros passos aqui -->
+        <div class="passo" id="passo-11">
+            <img src="img/cenario-passo11-cidade-perdida.png" alt="encontrando uma cidade maravilhosa perdida no Amazonas">
+            <p>Dentro da cidade perdida, você descobre tesouros inimagináveis e decide se dedicar a estudar e preservar este lugar.</p>
+        </div>
     </main>
 
     <!-- Som de vitória -->
@@ -93,12 +97,9 @@
                 atual.classList.remove('ativo');
                 document.getElementById(proximoPasso).classList.add('ativo');
 
-                // Quando chegar no passo final (passo 11 ou 12), tocar o som e gerar moedas
-                if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
-                    // Tocar o som de vitória com um pequeno atraso
-                    setTimeout(() => {
-                        victorySound.play();
-                    }, 100); // 100ms de atraso
+                // Quando chegar no passo final (passo 11), tocar o som e gerar moedas
+                if (proximoPasso === 'passo-11') {
+                    victorySound.play();  // Toca o som de vitória no momento certo
                     gerarMoedas();
                 }
             });
