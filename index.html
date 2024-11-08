@@ -145,7 +145,10 @@
 
                 // Quando chegar no passo final (passo 11 ou 12), tocar o som e gerar moedas
                 if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
+                    // Tocar o som de vitória
                     victorySound.play();
+
+                    // Gerar moedas
                     gerarMoedas();
                 }
             });
