@@ -48,7 +48,7 @@
         .moeda {
             position: absolute;
             top: -50px;
-            font-size: 60px; /* Aumentamos o tamanho das moedas (dobrado) */
+            font-size: 30px;
             color: gold;
             animation: cair 5s linear infinite;
         }
@@ -120,13 +120,15 @@
         <div class="passo" id="passo-11">
             <img src="img/cenario-passo11-cidade-perdida.png" alt="encontrando uma cidade maravilhosa perdida no Amazonas">
             <p>Dentro da cidade perdida, você descobre tesouros inimagináveis e decide se dedicar a estudar e preservar este lugar.</p>
-            <button class="btn-proximo" data-proximo="13">Fim da jornada</button>
         </div>
         <div class="passo" id="passo-12">
             <p>Retornando e escolhendo o rio à esquerda, você finalmente encontra a cachoeira escondida e as inscrições que levam à cidade perdida.</p>
             <button class="btn-proximo" data-proximo="11">Explorar a cidade perdida</button>
         </div>
     </main>
+
+    <!-- Som de vitória -->
+    <audio id="victory-sound" src="victory-sound.mp3" preload="auto"></audio>
 
     <script>
         const avanca = document.querySelectorAll('.btn-proximo');
@@ -135,36 +137,32 @@
             button.addEventListener('click', function() {
                 const atual = document.querySelector('.ativo');
                 const proximoPasso = 'passo-' + this.getAttribute('data-proximo');
+                const victorySound = document.getElementById('victory-sound');
                 
-                // Verifica se o próximo passo existe
-                const proximoElemento = document.getElementById(proximoPasso);
-                if (proximoElemento) {
-                    // Esconde a tela anterior e mostra a próxima
-                    atual.classList.remove('ativo');
-                    proximoElemento.classList.add('ativo');
+                // Esconde a tela anterior e mostra a próxima
+                atual.classList.remove('ativo');
+                document.getElementById(proximoPasso).classList.add('ativo');
 
-                    // Quando chegar nos passos 11 ou 12, gerar as moedas
-                    if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
-                        gerarMoedas();
-                    }
-                } else {
-                    console.error('Erro: Não foi possível encontrar o próximo passo com o ID:', proximoPasso);
+                // Quando chegar no passo final (passo 11 ou 12), tocar o som e gerar moedas
+                if (proximoPasso === 'passo-11' || proximoPasso === 'passo-12') {
+                    victorySound.play();
+                    gerarMoedas();
                 }
             });
         });
 
-        // Função para gerar moedas quando "Explorar a cidade perdida" for apertado
+        // Função para gerar moedas
         function gerarMoedas() {
-            setInterval(() => { 
+            for (let i = 0; i < 10; i++) {
                 const moeda = document.createElement('div');
                 moeda.classList.add('moeda');
-                moeda.style.left = `${Math.random() * 100}%`;  // Posiciona a moeda aleatoriamente
+                moeda.style.left = `${Math.random() * 100}%`;
                 moeda.textContent = '💰';
                 document.body.appendChild(moeda);
                 setTimeout(() => {
                     moeda.remove();
-                }, 5000);  // Remove a moeda após 5 segundos
-            }, 500);  // Intervalo de 500ms entre a criação das moedas
+                }, 5000);  // Remove as moedas após 5 segundos
+            }
         }
     </script>
 </body>
